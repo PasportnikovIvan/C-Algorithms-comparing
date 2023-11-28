@@ -1,6 +1,7 @@
 #include "parser.hpp"
 #include <iostream>
 #include <sstream>
+#include <cmath>
 
 std::function<double(double)> ExpressionParser::parse(const std::string& expression) const {
     std::istringstream iss(expression);
@@ -52,7 +53,7 @@ std::function<double(double)> ExpressionParser::parseFactor(std::istringstream& 
         std::function<double(double)> value = parseExpression(iss);
         iss >> next; // Read the closing parenthesis
         return value;
-    } else if (std::isalpha(next)) { // Check if it's a variable like 'x'
+    } else if (std::isalpha(next)) { // Check if it's a variable like 'x' or 'pi'
         std::string variable;
         variable += next;
         while (iss.get(next) && (std::isalnum(next) || next == '_')) {
@@ -62,6 +63,8 @@ std::function<double(double)> ExpressionParser::parseFactor(std::istringstream& 
 
         if (variable == "x") {
             return [this](double x) { return x; };
+        } else if (variable == "pi") {
+            return [](double) { return M_PI; }; // M_PI is a constant defined in cmath
         } else {
             std::cerr << "Error: Unsupported variable '" << variable << "'" << std::endl;
             iss.setstate(std::ios::failbit);
@@ -75,7 +78,15 @@ std::function<double(double)> ExpressionParser::parseFactor(std::istringstream& 
 }
 
 double ExpressionParser::parseNumber(std::istringstream& iss) const {
+    std::string str;
+    iss >> str;
+
+    if (str == "pi") {
+        return M_PI; // M_PI is a constant defined in cmath
+    }
+
+    std::istringstream strStream(str);
     double value;
-    iss >> value;
+    strStream >> value;
     return value;
 }
