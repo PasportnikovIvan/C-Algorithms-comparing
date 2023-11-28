@@ -46,7 +46,6 @@ std::function<double(double)> ExpressionParser::parseTerm(std::istringstream& is
 
     return value;
 }
-
 std::function<double(double)> ExpressionParser::parseFactor(std::istringstream& iss) const {
     char next;
     iss >> next;
@@ -56,23 +55,26 @@ std::function<double(double)> ExpressionParser::parseFactor(std::istringstream& 
         iss >> next; // Read the closing parenthesis
         return value;
     } else if (std::isalpha(next)) { // Check if it's a variable like 'x'
+        std::string variable;
+        variable += next;
+        while (iss.get(next) && (std::isalnum(next) || next == '_')) {
+            variable += next;
+        }
         iss.putback(next);
-        return [](double x) { return x; };
+
+        if (variable == "x") {
+            return [this](double x) { return x; };
+        } else {
+            std::cerr << "Error: Unsupported variable '" << variable << "'" << std::endl;
+            iss.setstate(std::ios::failbit);
+            return [](double) { return 0.0; }; // Handle unsupported variables gracefully
+        }
     } else {
         iss.putback(next);
         double numericValue = parseNumber(iss);
-
-        // If the next character is 'x', include it in the multiplication
-        if (iss >> next && std::isalpha(next)) {
-            iss.putback(next);
-            return [numericValue](double x) { return numericValue * x; };
-        } else {
-            iss.putback(next);
-            return [numericValue](double x) { return numericValue; };
-        }
+        return [numericValue](double x) { return numericValue; };
     }
 }
-
 
 double ExpressionParser::parseNumber(std::istringstream& iss) const {
     double value;
