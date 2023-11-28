@@ -8,19 +8,13 @@ int main() {
     if (calc.isValid()) {
         std::cout << "Function parameters are valid" << std::endl;
 
-        // Use calc.getA(), calc.getB(), calc.getN(), and calc.getFunction() as needed
         double a = calc.getA();
         double b = calc.getB();
         int n = calc.getN();
         std::function<double(double)> function = calc.getFunction();
 
-//        ExpressionParser parser;
-//        std::function<double(double)> expression = parser.parse("x*x + 2*x + 1");
-//
-//        // Test the parsed expression
-//        for (double x = 0.0; x <= 5.0; x += 1.0) {
-//            std::cout << "f(" << x << ") = " << expression(x) << std::endl;
-//        }
+        ExpressionParser parser;
+        std::function<double(double)> expression = parser.parse("x*x + 2*x + 1");
 
         double result_left_triangles = calc.leftRectangleIntegration(function, a, b, n);
         std::cout << "Left rectangle integration result: " << result_left_triangles << std::endl;
