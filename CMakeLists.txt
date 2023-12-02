@@ -4,7 +4,11 @@ project(sem_work)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(sem_work main.cpp
-        integral.hpp
-        integral.cpp
+        integral_helpfuncs.hpp
+        integral_helpfuncs.cpp
         parser.hpp
-        parser.cpp)
+        parser.cpp
+        leftRectangleIntegralSolver.hpp
+        leftRectangleIntegralSolver.cpp
+        trapezoidalIntegralSolver.cpp
+        trapezoidalIntegralSolver.hpp)

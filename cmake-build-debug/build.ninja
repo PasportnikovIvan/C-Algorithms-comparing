@@ -55,14 +55,26 @@ build CMakeFiles/sem_work.dir/main.cpp.obj: CXX_COMPILER__sem_work_unscanned_Deb
   OBJECT_DIR = CMakeFiles\sem_work.dir
   OBJECT_FILE_DIR = CMakeFiles\sem_work.dir
 
-build CMakeFiles/sem_work.dir/integral.cpp.obj: CXX_COMPILER__sem_work_unscanned_Debug C$:/FEL/2$ course/PCC/sem_work/integral.cpp || cmake_object_order_depends_target_sem_work
-  DEP_FILE = CMakeFiles\sem_work.dir\integral.cpp.obj.d
+build CMakeFiles/sem_work.dir/integral_helpfuncs.cpp.obj: CXX_COMPILER__sem_work_unscanned_Debug C$:/FEL/2$ course/PCC/sem_work/integral_helpfuncs.cpp || cmake_object_order_depends_target_sem_work
+  DEP_FILE = CMakeFiles\sem_work.dir\integral_helpfuncs.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\sem_work.dir
   OBJECT_FILE_DIR = CMakeFiles\sem_work.dir
 
 build CMakeFiles/sem_work.dir/parser.cpp.obj: CXX_COMPILER__sem_work_unscanned_Debug C$:/FEL/2$ course/PCC/sem_work/parser.cpp || cmake_object_order_depends_target_sem_work
   DEP_FILE = CMakeFiles\sem_work.dir\parser.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\sem_work.dir
+  OBJECT_FILE_DIR = CMakeFiles\sem_work.dir
+
+build CMakeFiles/sem_work.dir/leftRectangleIntegralSolver.cpp.obj: CXX_COMPILER__sem_work_unscanned_Debug C$:/FEL/2$ course/PCC/sem_work/leftRectangleIntegralSolver.cpp || cmake_object_order_depends_target_sem_work
+  DEP_FILE = CMakeFiles\sem_work.dir\leftRectangleIntegralSolver.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\sem_work.dir
+  OBJECT_FILE_DIR = CMakeFiles\sem_work.dir
+
+build CMakeFiles/sem_work.dir/trapezoidalIntegralSolver.cpp.obj: CXX_COMPILER__sem_work_unscanned_Debug C$:/FEL/2$ course/PCC/sem_work/trapezoidalIntegralSolver.cpp || cmake_object_order_depends_target_sem_work
+  DEP_FILE = CMakeFiles\sem_work.dir\trapezoidalIntegralSolver.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\sem_work.dir
   OBJECT_FILE_DIR = CMakeFiles\sem_work.dir
@@ -75,7 +87,7 @@ build CMakeFiles/sem_work.dir/parser.cpp.obj: CXX_COMPILER__sem_work_unscanned_D
 #############################################
 # Link the executable sem_work.exe
 
-build sem_work.exe: CXX_EXECUTABLE_LINKER__sem_work_Debug CMakeFiles/sem_work.dir/main.cpp.obj CMakeFiles/sem_work.dir/integral.cpp.obj CMakeFiles/sem_work.dir/parser.cpp.obj
+build sem_work.exe: CXX_EXECUTABLE_LINKER__sem_work_Debug CMakeFiles/sem_work.dir/main.cpp.obj CMakeFiles/sem_work.dir/integral_helpfuncs.cpp.obj CMakeFiles/sem_work.dir/parser.cpp.obj CMakeFiles/sem_work.dir/leftRectangleIntegralSolver.cpp.obj CMakeFiles/sem_work.dir/trapezoidalIntegralSolver.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\sem_work.dir
