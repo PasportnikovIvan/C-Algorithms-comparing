@@ -23,8 +23,7 @@ double Integral::trapezoidalIntegration(const std::function<double(double)>& f, 
 
         double A = (f(x1) - 2 * f((x0 + x1) / 2) + f(x0)) / (2 * h * h);
         double B = (f(x1) - f(x0)) / h - A * (x1 + x0) / 2;
-        double C = f(x0) - A * x0 * x0 - B * x0;
-
+//        double C = f(x0) - A * x0 * x0 - B * x0;
         integral += (f(x0) + f(x1)) / 2;
     }
     return integral * h;

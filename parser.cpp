@@ -9,42 +9,41 @@ std::function<double(double)> ExpressionParser::parse(const std::string& express
 }
 
 std::function<double(double)> ExpressionParser::parseExpression(std::istringstream& iss) const {
-    std::function<double(double)> value = parseTerm(iss);
-    char op;
+    std::function<double(double)> left = parseTerm(iss);
 
-    while (iss >> op) {
-        if (op == '+' || op == '-') {
-            std::function<double(double)> term = parseTerm(iss);
-            value = [value, term, op](double x) {
-                return (op == '+') ? value(x) + term(x) : value(x) - term(x);
-            };
+    char op;
+    while (iss >> op && (op == '+' || op == '-')) {
+        std::function<double(double)> right = parseTerm(iss);
+
+        if (op == '+') {
+            left = [left, right](double x) { return left(x) + right(x); };
         } else {
-            iss.putback(op);
-            break;
+            left = [left, right](double x) { return left(x) - right(x); };
         }
     }
 
-    return value;
+    iss.putback(op);
+    return left;
 }
 
 std::function<double(double)> ExpressionParser::parseTerm(std::istringstream& iss) const {
-    std::function<double(double)> value = parseFactor(iss);
-    char op;
+    std::function<double(double)> left = parseFactor(iss);
 
-    while (iss >> op) {
-        if (op == '*' || op == '/') {
-            std::function<double(double)> factor = parseFactor(iss);
-            value = [value, factor, op](double x) {
-                return (op == '*') ? value(x) * factor(x) : value(x) / factor(x);
-            };
+    char op;
+    while (iss >> op && (op == '*' || op == '/')) {
+        std::function<double(double)> right = parseFactor(iss);
+
+        if (op == '*') {
+            left = [left, right](double x) { return left(x) * right(x); };
         } else {
-            iss.putback(op);
-            break;
+            left = [left, right](double x) { return left(x) / right(x); };
         }
     }
 
-    return value;
+    iss.putback(op);
+    return left;
 }
+
 std::function<double(double)> ExpressionParser::parseFactor(std::istringstream& iss) const {
     char next;
     iss >> next;
@@ -53,40 +52,36 @@ std::function<double(double)> ExpressionParser::parseFactor(std::istringstream& 
         std::function<double(double)> value = parseExpression(iss);
         iss >> next; // Read the closing parenthesis
         return value;
-    } else if (std::isalpha(next)) { // Check if it's a variable like 'x' or 'pi'
-        std::string variable;
-        variable += next;
-        while (iss.get(next) && (std::isalnum(next) || next == '_')) {
-            variable += next;
-        }
+    } else {
         iss.putback(next);
+        return parseNumberOrVariable(iss);
+    }
+}
+std::function<double(double)> ExpressionParser::parseNumberOrVariable(std::istringstream& iss) const {
+    std::string token;
+    char next;
 
-        if (variable == "x") {
-            return [this](double x) { return x; };
-        } else if (variable == "pi") {
+    while (iss.get(next) && (std::isalnum(next) || next == '_' || next == '.')) {
+        token += next;
+    }
+    iss.putback(next);
+
+    if (!token.empty()) {
+        if (token == "pi") {
             return [](double) { return M_PI; }; // M_PI is a constant defined in cmath
+        } else if (std::isdigit(token[0]) || (token[0] == '-' && std::isdigit(token[1]))) {
+            std::istringstream strStream(token);
+            double numericValue;
+            strStream >> numericValue;
+            return [numericValue](double) { return numericValue; };
+        } else if (token == "x") {
+            return [](double x) { return x; };
         } else {
-            std::cerr << "Error: Unsupported variable '" << variable << "'" << std::endl;
+            std::cerr << "Error: Unsupported variable '" << token << "'" << std::endl;
             iss.setstate(std::ios::failbit);
             return [](double) { return 0.0; }; // Handle unsupported variables gracefully
         }
-    } else {
-        iss.putback(next);
-        double numericValue = parseNumber(iss);
-        return [numericValue](double x) { return numericValue; };
-    }
-}
-
-double ExpressionParser::parseNumber(std::istringstream& iss) const {
-    std::string str;
-    iss >> str;
-
-    if (str == "pi") {
-        return M_PI; // M_PI is a constant defined in cmath
     }
 
-    std::istringstream strStream(str);
-    double value;
-    strStream >> value;
-    return value;
+    return [](double) { return 0.0; };
 }
