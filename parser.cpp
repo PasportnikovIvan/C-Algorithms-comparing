@@ -53,8 +53,24 @@ std::function<double(double)> ExpressionParser::parseFactor(std::istringstream& 
         iss >> next; // Read the closing parenthesis
         return value;
     } else {
+
         iss.putback(next);
-        return parseNumberOrVariable(iss);
+
+        std::function<double(double)> left = parseNumberOrVariable(iss);
+
+        char op;
+        iss >> op;
+
+        if (op == '^') {
+            std::function<double(double)> right = parseFactor(iss);
+            return [=](double x){
+                return pow(left(x), right(x));
+            };
+        } else {
+
+            iss.putback(op);
+            return left;
+        }
     }
 }
 std::function<double(double)> ExpressionParser::parseNumberOrVariable(std::istringstream& iss) const {
