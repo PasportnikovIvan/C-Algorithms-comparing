@@ -92,6 +92,14 @@ std::function<double(double)> ExpressionParser::parseNumberOrVariable(std::istri
             return [numericValue](double) { return numericValue; };
         } else if (token == "x") {
             return [](double x) { return x; };
+        } else if (token == "sin") {
+            return [](double x) { return sin(x); };
+        } else if (token == "cos") {
+            return [](double x) { return cos(x); };
+        } else if (token == "tan") {
+            return [](double x) { return sin(x)/cos(x); };
+        } else if (token == "cot") {
+            return [](double x) { return cos(x)/sin(x); };
         } else {
             std::cerr << "Error: Unsupported variable '" << token << "'" << std::endl;
             iss.setstate(std::ios::failbit);
