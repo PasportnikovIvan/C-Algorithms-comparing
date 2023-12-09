@@ -1,6 +1,5 @@
 #include <functional>
 
-#include <iomanip>
 #include "parser.hpp"
 class Integral {
 

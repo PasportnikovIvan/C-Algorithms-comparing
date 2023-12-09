@@ -2,9 +2,9 @@
 #include <chrono>
 #include "integral_helpfuncs.hpp"
 #include "leftRectangleIntegralSolver.hpp"
-#include "ParalellLeftTriangleIntegralSolver.hpp"
+#include "ParallelLeftTriangleIntegralSolver.hpp"
 #include "trapezoidalIntegralSolver.hpp"
-#include "ParallelITrapezoidalIntegralSolver.hpp"
+#include "ParalleITrapezoidalIntegralSolver.hpp"
 
 template <typename TimePoint>
 std::chrono::milliseconds to_ms(TimePoint tp) {
@@ -26,11 +26,10 @@ void printHelp(){
 }
 
 int main() {
-    while (true) {
         std::string input;
         std::cin >> input;
         if (input == "--exit" || input == "-e") {
-            break;
+            return 0;
         }
         else if (input == "-h" || input == "--help") {
             printHelp();
@@ -50,7 +49,7 @@ int main() {
             calc.read(std::cin);
             if (calc.isValid()) {
                 auto start_left_triangle = std::chrono::high_resolution_clock::now();
-                calc.printSolution(ParalellLeftTriangleIntegralSolver::leftRectangleIntegration);
+                calc.printSolution(ParallelLeftTriangleIntegralSolver::leftRectangleIntegration);
                 auto end_left_triangle = std::chrono::high_resolution_clock::now();
                 std::cout << "Needed " << to_ms(end_left_triangle - start_left_triangle).count() << " ms to finish.\n";
             }
@@ -68,7 +67,7 @@ int main() {
             calc.read(std::cin);
             if (calc.isValid()) {
                 auto start_left_triangle = std::chrono::high_resolution_clock::now();
-                calc.printSolution(ParalellTrapezoidalIntegralSolver::trapezoidalIntegration);
+                calc.printSolution(ParallelTrapezoidalIntegralSolver::trapezoidalIntegration);
                 auto end_left_triangle = std::chrono::high_resolution_clock::now();
                 std::cout << "Needed " << to_ms(end_left_triangle - start_left_triangle).count() << " ms to finish.\n";
             }
@@ -76,6 +75,4 @@ int main() {
         else {
             std::cout << "Invalid method. Use -h,--help to see supported methods" << std::endl;
         }
-    }
-    return 0;
 }

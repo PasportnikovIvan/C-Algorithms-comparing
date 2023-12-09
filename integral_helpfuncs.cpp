@@ -53,5 +53,5 @@ void Integral::printSolution(const std::function<double(const std::function<doub
     // Use the specified algorithm to calculate the solution
     double solution = algorithm(getFunction(), getA(), getB(), getN());
     // Print the solution
-    std::cout << "Solution: " << std::setprecision(6) << solution << std::endl;
+    std::cout << "Solution: " << solution << std::endl;
 }

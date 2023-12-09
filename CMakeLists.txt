@@ -3,7 +3,7 @@ project(sem_work)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(sem_work main.cpp
+add_executable(        sem_work main.cpp
         integral_helpfuncs.hpp
         integral_helpfuncs.cpp
         parser.hpp
@@ -12,7 +12,9 @@ add_executable(sem_work main.cpp
         leftRectangleIntegralSolver.cpp
         trapezoidalIntegralSolver.cpp
         trapezoidalIntegralSolver.hpp
-        ParallelITrapezoidalIntegralSolver.hpp
-        ParalellTrapezoidalIntegralSolver.cpp
-        ParalellLeftTriangleIntegralSolver.cpp
-        ParalellLeftTriangleIntegralSolver.hpp)
+        ParallelTrapezoidalIntegralSolver.cpp
+        ParallelLeftTriangleIntegralSolver.cpp
+        ParallelLeftTriangleIntegralSolver.hpp
+        ParallelTrapezoidalIntegralSolver.cpp)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
