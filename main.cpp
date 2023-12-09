@@ -12,7 +12,7 @@ std::chrono::milliseconds to_ms(TimePoint tp) {
 }
 void printHelp(){
     std::cout << "Usage: ./integral {-h | --help } {-s|-a|-p} {-S|-F}" << std::endl;
-    std::cout << "Format for inserting the function: function in c++ format, down border, up border, precision(count of subintervals)" << std::endl;
+    std::cout << "Format for inserting the function: function in c++ format(only x variable is supported), down border, up border, precision(count of subintervals)" << std::endl;
     std::cout << "Example1: -lr 2*x,0,2,100" << std::endl;
     std::cout << "Example2: -tr x^2,-3,2,1000" << std::endl;
     std::cout << "Example3: -plr sin(x),1,5,5" << std::endl;
