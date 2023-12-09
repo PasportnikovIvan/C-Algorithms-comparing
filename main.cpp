@@ -44,8 +44,6 @@ int main() {
                 calc.printSolution(leftRectangleIntegralSolver::leftRectangleIntegration);
                 auto end_left_triangle = std::chrono::high_resolution_clock::now();
                 std::cout << "Needed " << to_ms(end_left_triangle - start_left_triangle).count() << " ms to finish.\n";
-            } else {
-                std::cout << "Invalid function parameters" << std::endl;
             }
         } else if (input == "-plr") {
             Integral calc;
@@ -55,8 +53,6 @@ int main() {
                 calc.printSolution(ParalellLeftTriangleIntegralSolver::leftRectangleIntegration);
                 auto end_left_triangle = std::chrono::high_resolution_clock::now();
                 std::cout << "Needed " << to_ms(end_left_triangle - start_left_triangle).count() << " ms to finish.\n";
-            } else {
-                std::cout << "Invalid function parameters" << std::endl;
             }
         } else if (input == "-tr") {
             Integral calc;
@@ -66,8 +62,6 @@ int main() {
                 calc.printSolution(trapezoidalIntegralSolver::trapezoidalIntegration);
                 auto end_left_triangle = std::chrono::high_resolution_clock::now();
                 std::cout << "Needed " << to_ms(end_left_triangle - start_left_triangle).count() << " ms to finish.\n";
-            } else {
-                std::cout << "Invalid function parameters" << std::endl;
             }
         } else if (input == "-ptr") {
             Integral calc;
@@ -77,8 +71,6 @@ int main() {
                 calc.printSolution(ParalellTrapezoidalIntegralSolver::trapezoidalIntegration);
                 auto end_left_triangle = std::chrono::high_resolution_clock::now();
                 std::cout << "Needed " << to_ms(end_left_triangle - start_left_triangle).count() << " ms to finish.\n";
-            } else {
-                std::cout << "Invalid function parameters" << std::endl;
             }
         }
         else {
