@@ -1,6 +1,10 @@
 #include <iostream>
 #include <chrono>
 #include "integral_helpfuncs.hpp"
+#include "leftRectangleIntegralSolver.hpp"
+#include "ParalellLeftTriangleIntegralSolver.hpp"
+#include "trapezoidalIntegralSolver.hpp"
+#include "ParallelITrapezoidalIntegralSolver.hpp"
 
 template <typename TimePoint>
 std::chrono::milliseconds to_ms(TimePoint tp) {

@@ -1,6 +1,4 @@
 #include "integral_helpfuncs.hpp"
-#include <iostream>
-#include <sstream>
 
 // Read function parameters from input
 void Integral::read(std::istream& in) {
@@ -55,5 +53,5 @@ void Integral::printSolution(const std::function<double(const std::function<doub
     // Use the specified algorithm to calculate the solution
     double solution = algorithm(getFunction(), getA(), getB(), getN());
     // Print the solution
-    std::cout << "Solution: " << solution << std::endl;
+    std::cout << "Solution: " << std::setprecision(6) << solution << std::endl;
 }

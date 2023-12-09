@@ -1,13 +1,7 @@
-#include <vector>
 #include <functional>
-#include <iostream>
-#include <sstream>
-#include "parser.hpp"
-#include "leftRectangleIntegralSolver.hpp"
-#include "trapezoidalIntegralSolver.hpp"
 
-#include "ParallelITrapezoidalIntegralSolver.hpp"
-#include "ParalellLeftTriangleIntegralSolver.hpp"
+#include <iomanip>
+#include "parser.hpp"
 class Integral {
 
 public:
