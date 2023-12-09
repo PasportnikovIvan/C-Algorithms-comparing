@@ -11,4 +11,8 @@ add_executable(sem_work main.cpp
         leftRectangleIntegralSolver.hpp
         leftRectangleIntegralSolver.cpp
         trapezoidalIntegralSolver.cpp
-        trapezoidalIntegralSolver.hpp)
+        trapezoidalIntegralSolver.hpp
+        ParallelITrapezoidalIntegralSolver.hpp
+        ParalellTrapezoidalIntegralSolver.cpp
+        ParalellLeftTriangleIntegralSolver.cpp
+        ParalellLeftTriangleIntegralSolver.hpp)

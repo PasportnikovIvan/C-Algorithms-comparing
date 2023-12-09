@@ -5,8 +5,6 @@
 // Read function parameters from input
 void Integral::read(std::istream& in) {
     std::string line;
-    std::cout << "Enter function parameters (f, a, b, n): ";
-
     if (std::getline(in, line)) {
         std::stringstream ss(line);
         char comma;
@@ -49,8 +47,13 @@ double Integral::getB() const {
 int Integral::getN() const {
     return n;
 }
-
 // Get the parsed function
 std::function<double(double)> Integral::getFunction() const {
     return parser.parse(functionStr);
+}
+void Integral::printSolution(const std::function<double(const std::function<double(double)>&, double, double, int)>& algorithm) const {
+    // Use the specified algorithm to calculate the solution
+    double solution = algorithm(getFunction(), getA(), getB(), getN());
+    // Print the solution
+    std::cout << "Solution: " << solution << std::endl;
 }
