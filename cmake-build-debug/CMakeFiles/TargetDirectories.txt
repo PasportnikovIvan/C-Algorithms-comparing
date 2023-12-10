@@ -1,3 +1,0 @@
-C:/FEL/2 course/PCC/sem_work/cmake-build-debug/CMakeFiles/sem_work.dir
-C:/FEL/2 course/PCC/sem_work/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/FEL/2 course/PCC/sem_work/cmake-build-debug/CMakeFiles/rebuild_cache.dir
