@@ -1,0 +1,3 @@
+C:/Users/Иван/Desktop/C++/paspoiva_sem_work/cmake-build-debug/CMakeFiles/sem_work.dir
+C:/Users/Иван/Desktop/C++/paspoiva_sem_work/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Иван/Desktop/C++/paspoiva_sem_work/cmake-build-debug/CMakeFiles/rebuild_cache.dir
